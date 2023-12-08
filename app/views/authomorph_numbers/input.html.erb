@@ -1,0 +1,13 @@
+<h1>AuthomorphNumbers#input</h1>
+<% if user_signed_in? %> 
+ <div> Welcome <%= current_user.email %> </div> 
+  <%= button_to "Sign out", destroy_user_session_path, method: :delete %> 
+<% else %>
+  <%= button_to "Sign in", new_user_session_path %> 
+<% end %>
+<%= form_tag("/authomorph_numbers/view.json", :method => "get", remote: true, :id => 'n-input-form') do %>
+ <%= label_tag("Enter N") %> <br/>
+ <%= text_field_tag(:n) %> <br/>
+ <%= submit_tag("Calc result", id: 'submit-button') %>
+<% end %> 
+<div id="results"></div>
